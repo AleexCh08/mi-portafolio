@@ -89,10 +89,19 @@ export function Projects() {
                 opacity: offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.4 : 0,
                 zIndex: offset === 0 ? 10 : 5
               }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className={`absolute w-[90%] sm:w-100 md:w-112.5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl flex flex-col h-fit ${
-                index !== currentIndex ? "pointer-events-none" : ""
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className={`absolute w-[90%] sm:w-100 md:w-112.5 bg-slate-900 border border-slate-800 p-6 rounded-xl flex flex-col h-fit transition-all ${
+                index !== currentIndex 
+                  ? "pointer-events-none shadow-2xl" 
+                  : "cursor-grab active:cursor-grabbing hover:border-slate-500 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] shadow-2xl"
               }`}
+              drag={index === currentIndex ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(e, { offset }) => {
+                if (offset.x < -50) nextCard();
+                if (offset.x > 50) prevCard();
+              }}
             >
               <div className="flex justify-between items-start gap-4 mb-2">
                 <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
@@ -141,7 +150,7 @@ export function Projects() {
         })}
       </div>
 
-      <div className="flex justify-center items-center gap-6 mt-6">
+      <div className="flex justify-center items-center gap-4 mt-3">
         <button 
           onClick={prevCard} 
           disabled={currentIndex === 0}
@@ -170,6 +179,12 @@ export function Projects() {
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
+      </div>
+
+      <div className="mt-8 text-center">
+        <p className="text-slate-400 text-sm">
+          ¿Quieres ver más? <a href="https://github.com/AleexCh08" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-medium underline underline-offset-4 transition-colors">Visita mi GitHub</a> para explorar todos mis repositorios y experimentos en desarrollo.
+        </p>
       </div>
     </section>
   );
