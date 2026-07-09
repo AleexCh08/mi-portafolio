@@ -109,7 +109,7 @@ export function Projects() {
               </div>
               <p className="text-slate-400 mb-4 text-justify">{proyecto.descripcion}</p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-6 self-center-safe">
                 {proyecto.tecnologias.map((tech, i) => (
                   <span key={i} className="bg-slate-800 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full">
                     {tech}
@@ -117,7 +117,7 @@ export function Projects() {
                 ))}
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 self-center-safe">
                 <a 
                   href={proyecto.repo} 
                   target="_blank" 
