@@ -21,7 +21,11 @@ const proyectos = [
     tecnologias: ["C++", "OpenGL", "ImGui", "GLFW/GLAD"],
     repo: "https://github.com/AleexCh08/obj-viewer",
     demo: "#",
-    demoMedia: null
+    demoMedia: [
+        "/demos/obj-viewer-1.mp4",
+        "/demos/obj-viewer-2.mp4",
+        "/demos/obj-viewer-3.mp4"
+    ]
   },
   {
     id: 3,
@@ -41,7 +45,11 @@ const proyectos = [
     tecnologias: ["Kotlin", "JavaFX"],
     repo: "https://github.com/AleexCh08/photolab-pro",
     demo: "#",
-    demoMedia: null
+    demoMedia: [
+        "/demos/photo-lab-1.mp4",
+        "/demos/photo-lab-2.mp4",
+        "/demos/photo-lab-3.mp4"
+    ]
   },
   {
     id: 5,
