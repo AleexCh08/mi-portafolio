@@ -48,7 +48,7 @@ Si deseas correr este portafolio en tu máquina local para revisar el código fu
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/AleexCh08/nombre-de-tu-repo.git](https://github.com/AleexCh08/nombre-de-tu-repo.git)
+   git clone [https://github.com/AleexCh08/nombre-de-tu-repo.git]
    ```
 
 2. Navega al directorio del proyecto:
