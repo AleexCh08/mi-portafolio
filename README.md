@@ -2,7 +2,7 @@
 
 Un portafolio web interactivo y de alto rendimiento construido para demostrar mis capacidades como Desarrollador de Software. Diseñado con un enfoque *mobile-first*, animaciones fluidas y una arquitectura de componentes escalable.
 
-[![Ver Portafolio](https://img.shields.io/badge/🌐_Ver_Portafolio-blue?style=for-the-badge&logoColor=white&color=2563EB)](https://mi-portafolio.netlify.app/)
+[![Ver Portafolio](https://img.shields.io/badge/🌐_Ver_Portafolio-blue?style=for-the-badge&logoColor=white&color=2563EB)](https://mi-portafolio-aleexch.netlify.app/)
 
 > **🎯 Nota para Reclutadores y Líderes Técnicos:**  
 > La mejor manera de experimentar este proyecto es visitando la versión desplegada en el enlace de arriba. El código fuente está disponible a continuación para revisión técnica.
@@ -48,7 +48,7 @@ Si deseas correr este portafolio en tu máquina local para revisar el código fu
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/AleexCh08/nombre-de-tu-repo.git]
+   git clone [https://github.com/AleexCh08/mi-portafolio.git]
    ```
 
 2. Navega al directorio del proyecto:
