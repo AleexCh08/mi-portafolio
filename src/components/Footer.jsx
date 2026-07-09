@@ -1,9 +1,9 @@
 export function Footer() {
   return (
-    <footer id="contacto" className="max-w-5xl mx-auto p-8 mt-12 border-t border-slate-800 text-center">
+    <footer id="contacto" className="max-w-5xl mx-auto p-4 mt-6 border-t border-slate-800 text-center">
       <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400 uppercase">Contactame</h3>
       
-      <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-4">
         <a 
           href="mailto:aleexch08@gmail.com" 
           className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"

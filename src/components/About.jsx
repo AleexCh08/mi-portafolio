@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export function About() {
   return (
-    <section id="sobre-mi" className="mt-24 scroll-mt-24">
+    <section id="sobre-mi" className="mt-12 scroll-mt-24">
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -13,7 +13,7 @@ export function About() {
           <img src="/perfil.png" alt="Alexander Churio" className="w-full h-full object-cover" />          
         </div>
         <div>
-          <h3 className="text-3xl font-bold mb-4">Sobre Mí</h3>
+          <h3 className="text-3xl font-bold mb-4 text-center">Sobre Mí</h3>
           <p className="text-slate-300 leading-relaxed mb-4 text-justify">
             Soy estudiante del último año de la Licenciatura en Computación en la UCV y desarrollador de Software Junior. Me especializo en traducir requerimientos lógicos y teóricos en aplicaciones funcionales. Manejo el ciclo completo de desarrollo, trabajando con ecosistemas modernos (React) y robustos (Python/Django, Java, C++).
           </p>

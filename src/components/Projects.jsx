@@ -50,7 +50,7 @@ const proyectos = [
 
 export function Projects() {
   return (
-    <section id="proyectos" className="mt-24 scroll-mt-24">
+    <section id="proyectos" className="mt-12 scroll-mt-24">
       <motion.h3 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
