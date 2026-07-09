@@ -51,7 +51,11 @@ const proyectos = [
     tecnologias: ["C++", "Raylib", "GLSL"],
     repo: "https://github.com/AleexCh08/dredge-clone",
     demo: "#",
-    demoMedia: null
+    demoMedia: [
+        "/demos/dredge-clone-1.mp4",
+        "/demos/dredge-clone-2.mp4",
+        "/demos/dredge-clone-3.mp4"
+    ]
   }
 ];
 
