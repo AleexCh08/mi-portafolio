@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { DemoModal } from "./DemoModal";
 
 const proyectos = [
   {
@@ -9,7 +10,8 @@ const proyectos = [
     descripcion: "Una aplicación web progresiva que recrea el juego lógico 'Concurso de Belleza'. Diseñada bajo un enfoque mobile-first, garantiza una experiencia inmersiva mediante animaciones fluidas y un motor de audio centralizado.",
     tecnologias: ["React", "Tailwind CSS", "Vite", "PWA"],
     repo: "https://github.com/AleexCh08/rey-de-diamantes",
-    demo: "https://rey-de-diamantes.netlify.app/"
+    demo: "https://rey-de-diamantes.netlify.app/",
+    demoMedia: null
   },
   {
     id: 2,
@@ -18,7 +20,8 @@ const proyectos = [
     descripcion: "Visor de modelos 3D interactivo desarrollado en C++ moderno. Este proyecto permite cargar, visualizar y manipular archivos de objetos 3D (.obj) utilizando una interfaz gráfica en tiempo real.",
     tecnologias: ["C++", "OpenGL", "ImGui", "GLFW/GLAD"],
     repo: "https://github.com/AleexCh08/obj-viewer",
-    demo: "#"
+    demo: "#",
+    demoMedia: null
   },
   {
     id: 3,
@@ -27,7 +30,8 @@ const proyectos = [
     descripcion: "Plataforma digital desarrollada para modernizar y automatizar los procesos operativos de la agencia física Lotería Felmar C.A. Gestiona la compra digital de tickets, la sincronización automática de resultados mediante Web Scraping y un sistema de notificaciones asíncronas para ganadores.",
     tecnologias: ["Python", "Django", "HTML/CSS/JS", "WebScraping"],
     repo: "https://github.com/AleexCh08/loteria-felmar-web",
-    demo: "https://aleexch.pythonanywhere.com"
+    demo: "https://aleexch.pythonanywhere.com",
+    demoMedia: null
   },
   {
     id: 4,
@@ -36,7 +40,8 @@ const proyectos = [
     descripcion: "Aplicación de escritorio desarrollada en Kotlin y JavaFX enfocada en el Procesamiento Digital de Imágenes (PDI). Permite cargar, editar, aplicar transformaciones matemáticas, analizar las propiedades de los píxeles y exportar los resultados.",
     tecnologias: ["Kotlin", "JavaFX"],
     repo: "https://github.com/AleexCh08/photolab-pro",
-    demo: "#"
+    demo: "#",
+    demoMedia: null
   },
   {
     id: 5,
@@ -45,12 +50,14 @@ const proyectos = [
     descripcion: "Un juego de pesca y supervivencia con un fuerte componente de horror psicológico y gestión de recursos. El juego simula físicas marinas, iluminación dinámica y un sistema de cordura que altera el mundo que rodea al jugador. Clon del juego Indie DREDGE.",
     tecnologias: ["C++", "Raylib", "GLSL"],
     repo: "https://github.com/AleexCh08/dredge-clone",
-    demo: "#"
+    demo: "#",
+    demoMedia: null
   }
 ];
 
 export function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeDemo, setActiveDemo] = useState(null);
 
   const nextCard = () => {
     if (currentIndex < proyectos.length - 1) setCurrentIndex(currentIndex + 1);
@@ -135,14 +142,23 @@ export function Projects() {
                 >
                   Ver Código
                 </a>
-                <a 
+                {proyecto.demo === "#" ? (
+                  <button 
+                    onClick={() => setActiveDemo(proyecto)}
+                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center cursor-pointer"
+                  >
+                    Ver demo
+                  </button>
+                ) : (
+                  <a 
                     href={proyecto.demo} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-                    >
-                    {proyecto.demo === "#" ? "Ver demo" : "Abrir web"}
-                </a>
+                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center"
+                  >
+                    Abrir web
+                  </a>
+                )}
                
               </div>
             </motion.div>
@@ -186,6 +202,12 @@ export function Projects() {
           ¿Quieres ver más? <a href="https://github.com/AleexCh08" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-medium underline underline-offset-4 transition-colors">Visita mi GitHub</a> para explorar todos mis repositorios y experimentos en desarrollo.
         </p>
       </div>
+
+      <DemoModal 
+        isOpen={!!activeDemo} 
+        onClose={() => setActiveDemo(null)} 
+        proyecto={activeDemo} 
+      />
     </section>
   );
 }
