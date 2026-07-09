@@ -12,12 +12,13 @@ export function Hero() {
             Alexander Churio
         </h2>
         <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">
-            Desarrollador de Software Junior
+            Desarrollador de Software
         </h3>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
             Construyendo soluciones eficientes desde el análisis algorítmico hasta el despliegue web. 
             Enfocado en el código limpio, la lógica sólida y la integración de IA para optimizar procesos.
         </p>
+      
     </div> 
     </motion.div>
   );

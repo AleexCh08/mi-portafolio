@@ -2,7 +2,7 @@ export function Header() {
   return (
     <header className="p-8 border-b border-slate-800 flex justify-between items-center max-w-5xl mx-auto">
       <a href="#">
-        <h1 className="text-4xl font-bold tracking-tight">Mi Portafolio</h1>
+        <h1 className="text-xl font-bold tracking-tight">Mi Portafolio</h1>
       </a>
       
       <nav className="space-x-6 text-sm font-medium text-slate-400">
