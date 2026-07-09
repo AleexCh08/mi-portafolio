@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const proyectos = [
   {
@@ -49,72 +50,126 @@ const proyectos = [
 ];
 
 export function Projects() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextCard = () => {
+    if (currentIndex < proyectos.length - 1) setCurrentIndex(currentIndex + 1);
+  };
+
+  const prevCard = () => {
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+  };
+
   return (
-    <section id="proyectos" className="mt-12 scroll-mt-24">
+    <section id="proyectos" className="mt-12 scroll-mt-12">
       <motion.h3 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="text-3xl font-bold mb-8 border-b border-slate-800 pb-4"
+        className="text-3xl font-bold mb-8 border-b border-slate-800 pb-4 text-center"
       >
         Trabajos Destacados
       </motion.h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {proyectos.map((proyecto, index) => (
-          <motion.div 
-            key={proyecto.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="bg-slate-900 border border-slate-800 p-6 rounded-xl hover:border-slate-600 transition-colors flex flex-col h-full"
-          >
-            <div className="flex justify-between items-start gap-4 mb-2">
-              <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
+      <div 
+        className="relative w-full max-w-5xl mx-auto h-110 md:h-105 flex justify-center items-center overflow-hidden" 
+        style={{ perspective: "1200px" }}
+      >
+        {proyectos.map((proyecto, index) => {
+          const offset = index - currentIndex;
+          
+          return (
+            <motion.div 
+              key={proyecto.id}
+              initial={false}
+              animate={{ 
+                x: offset === 0 ? "0%" : offset === 1 ? "70%" : offset === -1 ? "-70%" : offset > 1 ? "150%" : "-150%",
+                scale: offset === 0 ? 1 : 0.85,
+                rotateY: offset === 0 ? 0 : offset === 1 ? -25 : offset === -1 ? 25 : 0,
+                opacity: offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.4 : 0,
+                zIndex: offset === 0 ? 10 : 5
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className={`absolute w-[90%] sm:w-100 md:w-112.5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl flex flex-col h-fit ${
+                index !== currentIndex ? "pointer-events-none" : ""
+              }`}
+            >
+              <div className="flex justify-between items-start gap-4 mb-2">
+                <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
+                
+                {proyecto.status && (
+                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-md whitespace-nowrap mt-1 border ${
+                        proyecto.status === 'Listo' 
+                        ? 'bg-emerald-900/30 text-emerald-400 border-emerald-700/50' 
+                        : 'bg-amber-900/30 text-amber-400 border-amber-700/50'
+                    }`}>
+                        {proyecto.status}
+                    </span>
+                )}
+              </div>
+              <p className="text-slate-400 mb-4 text-justify">{proyecto.descripcion}</p>
               
-            {proyecto.status && (
-                <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-md whitespace-nowrap mt-1 border ${
-                    proyecto.status === 'Listo' 
-                    ? 'bg-emerald-900/30 text-emerald-400 border-emerald-700/50' 
-                    : 'bg-amber-900/30 text-amber-400 border-amber-700/50'
-                }`}>
-                    {proyecto.status}
-                </span>
-            )}
-            </div>
-            <p className="text-slate-400 mb-6 grow text-justify">{proyecto.descripcion}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
-              {proyecto.tecnologias.map((tech, i) => (
-                <span key={i} className="bg-slate-800 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {proyecto.tecnologias.map((tech, i) => (
+                  <span key={i} className="bg-slate-800 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full">
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
-            <div className="flex gap-4 mt-auto">
-              <a 
-                href={proyecto.repo} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm font-medium border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg transition-colors"
-              >
-                Ver Código
-              </a>
-              {proyecto.demo !== "#" && (
+              <div className="flex gap-4">
                 <a 
-                  href={proyecto.demo} 
+                  href={proyecto.repo} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  className="text-sm font-medium border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg transition-colors"
                 >
-                  Demo en Vivo
+                  Ver Código
                 </a>
-              )}
-            </div>
-          </motion.div>
-        ))}
+                <a 
+                    href={proyecto.demo} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                    {proyecto.demo === "#" ? "Ver demo" : "Abrir web"}
+                </a>
+               
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <div className="flex justify-center items-center gap-6 mt-6">
+        <button 
+          onClick={prevCard} 
+          disabled={currentIndex === 0}
+          className="p-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors shadow-lg"
+          aria-label="Proyecto anterior"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <div className="flex gap-3">
+          {proyectos.map((_, idx) => (
+            <button 
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-blue-500 scale-125' : 'bg-slate-700 hover:bg-slate-600'}`}
+              aria-label={`Ir al proyecto ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        <button 
+          onClick={nextCard} 
+          disabled={currentIndex === proyectos.length - 1}
+          className="p-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors shadow-lg"
+          aria-label="Siguiente proyecto"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
       </div>
     </section>
   );
