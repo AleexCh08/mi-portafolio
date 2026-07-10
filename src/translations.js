@@ -1,6 +1,7 @@
 export const translations = {
   es: {
     // Header & Navegación
+    header_title: "Mi Portafolio",
     nav_about: "Sobre Mí",
     nav_projects: "Proyectos",
     nav_contact: "Contacto",
@@ -58,6 +59,7 @@ export const translations = {
   
   en: {
     // Header & Navigation
+    header_title: "My Portfolio",
     nav_about: "About Me",
     nav_projects: "Projects",
     nav_contact: "Contact",
