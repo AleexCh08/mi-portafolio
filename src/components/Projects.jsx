@@ -1,75 +1,77 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { DemoModal } from "./DemoModal";
-
-const proyectos = [
-  {
-    id: 1,
-    titulo: "Rey de Diamantes: Concurso de Belleza",
-    status: "Listo",
-    descripcion: "Una aplicación web progresiva que recrea el juego lógico 'Concurso de Belleza'. Diseñada bajo un enfoque mobile-first, garantiza una experiencia inmersiva mediante animaciones fluidas y un motor de audio centralizado.",
-    tecnologias: ["React", "Tailwind CSS", "Vite", "PWA"],
-    repo: "https://github.com/AleexCh08/rey-de-diamantes",
-    demo: "https://rey-de-diamantes.netlify.app/",
-    demoMedia: null
-  },
-  {
-    id: 2,
-    titulo: "OBJ Viewer",
-    status: "Listo",
-    descripcion: "Visor de modelos 3D interactivo desarrollado en C++ moderno. Este proyecto permite cargar, visualizar y manipular archivos de objetos 3D (.obj) utilizando una interfaz gráfica en tiempo real.",
-    tecnologias: ["C++", "OpenGL", "ImGui", "GLFW/GLAD"],
-    repo: "https://github.com/AleexCh08/obj-viewer",
-    demo: "#",
-    demoMedia: [
-        "/demos/obj-viewer-1.mp4",
-        "/demos/obj-viewer-2.mp4",
-        "/demos/obj-viewer-3.mp4"
-    ]
-  },
-  {
-    id: 3,
-    titulo: "Gestión de Loterías",
-    status: "Listo",
-    descripcion: "Plataforma digital desarrollada para modernizar y automatizar los procesos operativos de la agencia física Lotería Felmar C.A. Gestiona la compra digital de tickets, la sincronización automática de resultados mediante Web Scraping y un sistema de notificaciones asíncronas para ganadores.",
-    tecnologias: ["Python", "Django", "HTML/CSS/JS", "WebScraping"],
-    repo: "https://github.com/AleexCh08/loteria-felmar-web",
-    demo: "https://aleexch.pythonanywhere.com",
-    demoMedia: null
-  },
-  {
-    id: 4,
-    titulo: "PhotoLab Pro",
-    status: "Listo",
-    descripcion: "Aplicación de escritorio desarrollada en Kotlin y JavaFX enfocada en el Procesamiento Digital de Imágenes (PDI). Permite cargar, editar, aplicar transformaciones matemáticas, analizar las propiedades de los píxeles y exportar los resultados.",
-    tecnologias: ["Kotlin", "JavaFX"],
-    repo: "https://github.com/AleexCh08/photolab-pro",
-    demo: "#",
-    demoMedia: [
-        "/demos/photo-lab-1.mp4",
-        "/demos/photo-lab-2.mp4",
-        "/demos/photo-lab-3.mp4"
-    ]
-  },
-  {
-    id: 5,
-    titulo: "Dredge Clone",
-    status: "En desarrollo",
-    descripcion: "Un juego de pesca y supervivencia con un fuerte componente de horror psicológico y gestión de recursos. El juego simula físicas marinas, iluminación dinámica y un sistema de cordura que altera el mundo que rodea al jugador. Clon del juego Indie DREDGE.",
-    tecnologias: ["C++", "Raylib", "GLSL"],
-    repo: "https://github.com/AleexCh08/dredge-clone",
-    demo: "#",
-    demoMedia: [
-        "/demos/dredge-clone-1.mp4",
-        "/demos/dredge-clone-2.mp4",
-        "/demos/dredge-clone-3.mp4"
-    ]
-  }
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export function Projects() {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeDemo, setActiveDemo] = useState(null);
+
+  const proyectos = [
+    {
+      id: 1,
+      titulo: t('p1_title'),
+      status: t('status_ready'),
+      descripcion: t('p1_desc'),
+      tecnologias: ["React", "Tailwind CSS", "Vite", "PWA"],
+      repo: "https://github.com/AleexCh08/rey-de-diamantes",
+      demo: "https://rey-de-diamantes.netlify.app/",
+      demoMedia: null
+    },
+    {
+      id: 2,
+      titulo: "OBJ Viewer",
+      status: t('status_ready'),
+      descripcion: t('p2_desc'),
+      tecnologias: ["C++", "OpenGL", "ImGui", "GLFW/GLAD"],
+      repo: "https://github.com/AleexCh08/obj-viewer",
+      demo: "#",
+      demoMedia: [
+          "/demos/obj-viewer-1.mp4",
+          "/demos/obj-viewer-2.mp4",
+          "/demos/obj-viewer-3.mp4"
+      ]
+    },
+    {
+      id: 3,
+      titulo: t('p3_title'),
+      status: t('status_ready'),
+      descripcion: t('p3_desc'),
+      tecnologias: ["Python", "Django", "HTML/CSS/JS", "WebScraping"],
+      repo: "https://github.com/AleexCh08/loteria-felmar-web",
+      demo: "https://aleexch.pythonanywhere.com",
+      demoMedia: null
+    },
+    {
+      id: 4,
+      titulo: "PhotoLab Pro",
+      status: t('status_ready'),
+      descripcion: t('p4_desc'),
+      tecnologias: ["Kotlin", "JavaFX"],
+      repo: "https://github.com/AleexCh08/photolab-pro",
+      demo: "#",
+      demoMedia: [
+          "/demos/photo-lab-1.mp4",
+          "/demos/photo-lab-2.mp4",
+          "/demos/photo-lab-3.mp4"
+      ]
+    },
+    {
+      id: 5,
+      titulo: "Dredge Clone",
+      status: t('status_dev'),
+      descripcion: t('p5_desc'),
+      tecnologias: ["C++", "Raylib", "GLSL"],
+      repo: "https://github.com/AleexCh08/dredge-clone",
+      demo: "#",
+      demoMedia: [
+          "/demos/dredge-clone-1.mp4",
+          "/demos/dredge-clone-2.mp4",
+          "/demos/dredge-clone-3.mp4"
+      ]
+    }
+  ];
 
   const nextCard = () => {
     if (currentIndex < proyectos.length - 1) setCurrentIndex(currentIndex + 1);
@@ -87,7 +89,7 @@ export function Projects() {
         viewport={{ once: true }}
         className="text-3xl font-bold mb-8 border-b border-slate-800 pb-4 text-center"
       >
-        Trabajos Destacados
+        {t('projects_title')}
       </motion.h3>
 
       <div 
@@ -127,7 +129,7 @@ export function Projects() {
                 
                 {proyecto.status && (
                     <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-md whitespace-nowrap mt-1 border ${
-                        proyecto.status === 'Listo' 
+                        (proyecto.status === 'Listo' || proyecto.status === 'Completed')
                         ? 'bg-emerald-900/30 text-emerald-400 border-emerald-700/50' 
                         : 'bg-amber-900/30 text-amber-400 border-amber-700/50'
                     }`}>
@@ -152,14 +154,14 @@ export function Projects() {
                   rel="noopener noreferrer"
                   className="text-sm font-medium border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg transition-colors"
                 >
-                  Ver Código
+                  {t('projects_btn_code')}
                 </a>
                 {proyecto.demo === "#" ? (
                   <button 
                     onClick={() => setActiveDemo(proyecto)}
                     className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center cursor-pointer"
                   >
-                    Ver demo
+                    {t('projects_btn_demo')}
                   </button>
                 ) : (
                   <a 
@@ -168,7 +170,7 @@ export function Projects() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center"
                   >
-                    Abrir web
+                    {t('projects_btn_web')}
                   </a>
                 )}
                
@@ -211,7 +213,7 @@ export function Projects() {
 
       <div className="mt-8 text-center">
         <p className="text-slate-400 text-sm">
-          ¿Quieres ver más? <a href="https://github.com/AleexCh08" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-medium underline underline-offset-4 transition-colors">Visita mi GitHub</a> para explorar todos mis repositorios y experimentos en desarrollo.
+          {t('projects_more_question')} <a href="https://github.com/AleexCh08" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-medium underline underline-offset-4 transition-colors">{t('projects_more_link')}</a> {t('projects_more_text')}
         </p>
       </div>
 

@@ -1,7 +1,11 @@
+import { useLanguage } from "../context/LanguageContext";
+
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer id="contacto" className="max-w-5xl mx-auto p-4 mt-6 border-t border-slate-800 text-center">
-      <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400 uppercase">Contactame</h3>
+      <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400 uppercase">{t('footer_title')}</h3>
       
       <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-4">
         <a 
@@ -12,7 +16,7 @@ export function Footer() {
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
-          <span className="hidden sm:inline">Correo</span>
+          <span className="hidden sm:inline">{t('footer_email')}</span>
         </a>
 
         <a 
@@ -69,7 +73,7 @@ export function Footer() {
         </a>
       </div>
       
-      <p className="text-slate-600 text-sm">Caracas, Venezuela.</p>
+      <p className="text-slate-600 text-sm">{t('footer_location')}</p>
     </footer>
   );
 }

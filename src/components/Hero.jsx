@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Hero() {
+  const { t } = useLanguage();
+  
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -12,11 +15,10 @@ export function Hero() {
             Alexander Churio
         </h2>
         <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">
-            Desarrollador de Software Junior
+            {t('hero_role')}
         </h3>
         <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
-            Construyendo soluciones eficientes desde el análisis algorítmico, desarrollo gráfico, hasta el despliegue web. 
-            Enfocado en el código limpio, la lógica sólida y la integración de IA para optimizar procesos.
+            {t('hero_description')}
         </p>
       
     </div> 

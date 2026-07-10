@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 export function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="sobre-mi" className="mt-12 scroll-mt-24">
       <motion.div 
@@ -13,12 +16,12 @@ export function About() {
           <img src="/perfil.png" alt="Alexander Churio" className="w-full h-full object-cover" />          
         </div>
         <div>
-          <h3 className="text-3xl font-bold mb-4 text-center">Sobre Mí</h3>
+          <h3 className="text-3xl font-bold mb-4 text-center">{t('about_title')}</h3>
           <p className="text-slate-300 leading-relaxed mb-4 text-justify">
-            Soy estudiante del último año de la Licenciatura en Computación en la UCV y desarrollador de Software Junior. Me especializo en traducir requerimientos lógicos y teóricos en aplicaciones funcionales. Manejo el ciclo completo de desarrollo, trabajando con ecosistemas modernos (React) y robustos (Python/Django, Java, C++).
+            {t('about_p1')}
           </p>
           <p className="text-slate-300 leading-relaxed mb-4 text-justify">
-            Tengo un enfoque fuerte en la resolución de problemas y el análisis de algoritmos. Integro activamente herramientas de Inteligencia Artificial en mi flujo de trabajo para acelerar el debugging, refactorizar código y optimizar recursos, garantizando entregas precisas.
+            {t('about_p2')}
           </p>
           <div className="flex flex-wrap gap-2 mt-4 justify-center">
             {['Python', 'Java', 'Kotlin','React', 'JavaScript', 'Django', 'C++', 'SQL/NoSQL'].map((skill) => (
@@ -38,7 +41,7 @@ export function About() {
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              Descargar CV
+              {t('about_cv')}
             </a>
           </div>
           

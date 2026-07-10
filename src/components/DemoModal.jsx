@@ -1,7 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export function DemoModal({ isOpen, onClose, proyecto }) {
+    const { t } = useLanguage();
     const [mediaIndex, setMediaIndex] = useState(0);
 
     const handleClose = () => {
@@ -29,7 +31,7 @@ export function DemoModal({ isOpen, onClose, proyecto }) {
           >
             <div className="flex justify-between items-center p-4 border-b border-slate-800">
               <h3 className="text-xl font-bold text-slate-100">
-                {proyecto.titulo} <span className="text-slate-500 font-normal">- Demostración</span>
+                {proyecto.titulo} <span className="text-slate-500 font-normal">{t('modal_demo_badge')}</span>
               </h3>
               <button 
                 onClick={handleClose} 
@@ -58,11 +60,11 @@ export function DemoModal({ isOpen, onClose, proyecto }) {
                           disabled={mediaIndex === 0}
                           className="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                         >
-                          Anterior
+                          {t('modal_prev')}
                         </button>
                         
                         <span className="text-sm font-medium">
-                          {mediaIndex + 1} de {proyecto.demoMedia.length}
+                          {mediaIndex + 1} {t('modal_of')} {proyecto.demoMedia.length}
                         </span>
                         
                         <button 
@@ -70,7 +72,7 @@ export function DemoModal({ isOpen, onClose, proyecto }) {
                           disabled={mediaIndex === proyecto.demoMedia.length - 1}
                           className="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                         >
-                          Siguiente
+                          {t('modal_next')}
                         </button>
                     </div>
                   )}
@@ -78,8 +80,8 @@ export function DemoModal({ isOpen, onClose, proyecto }) {
               ) : (
                 <div className="flex flex-col items-center justify-center text-slate-600 aspect-video">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                    <p className="text-lg font-medium">Demostración en construcción</p>
-                    <p className="text-sm mt-2">Se agregará próximamente.</p>
+                    <p className="text-lg font-medium">{t('modal_wip_title')}</p>
+                    <p className="text-sm mt-2">{t('modal_wip_desc')}</p>
                 </div>
               )}
             </div>
