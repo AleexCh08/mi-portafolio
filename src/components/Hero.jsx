@@ -10,7 +10,7 @@ export function Hero() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative py-10"
+      className="relative"
     >
     <AuroraBackground />
       <div className="text-center relative z-10">
