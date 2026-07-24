@@ -29,13 +29,13 @@ export const translations = {
 
     // Project Data
     p1_title: "Rey de Diamantes: Concurso de Belleza",
-    p1_desc: "Una aplicación web progresiva que recrea el juego lógico 'Concurso de Belleza'. Diseñada bajo un enfoque mobile-first, garantiza una experiencia inmersiva mediante animaciones fluidas y un motor de audio centralizado.",
+    p1_desc: "Una aplicación web progresiva que recrea el juego lógico 'Concurso de Belleza'. Garantiza una experiencia inmersiva mediante animaciones fluidas y un motor de audio centralizado.",
     
     p2_title: "OBJ Viewer",
     p2_desc: "Visor de modelos 3D interactivo desarrollado en C++ moderno. Este proyecto permite cargar, visualizar y manipular archivos de objetos 3D (.obj) utilizando una interfaz gráfica en tiempo real.",
     
     p3_title: "Gestión de Loterías",
-    p3_desc: "Plataforma digital desarrollada para modernizar y automatizar los procesos operativos de la agencia física Lotería Felmar C.A. Gestiona la compra digital de tickets, la sincronización automática de resultados mediante Web Scraping y un sistema de notificaciones asíncronas para ganadores.",
+    p3_desc: "Plataforma digital desarrollada para modernizar y automatizar los procesos operativos de la agencia física Lotería Felmar C.A.",
     
     p4_title: "PhotoLab Pro",
     p4_desc: "Aplicación de escritorio desarrollada en Kotlin y JavaFX enfocada en el Procesamiento Digital de Imágenes (PDI). Permite cargar, editar, aplicar transformaciones matemáticas, analizar las propiedades de los píxeles y exportar los resultados.",
@@ -87,13 +87,13 @@ export const translations = {
 
     // Project Data
     p1_title: "King of Diamonds: Beauty Contest",
-    p1_desc: "A Progressive Web App (PWA) that recreates the 'Beauty Contest' logic game. Designed with a mobile-first approach, it guarantees an immersive experience through fluid animations and a centralized audio engine.",
+    p1_desc: "A Progressive Web App (PWA) that recreates the 'Beauty Contest' logic game. It guarantees an immersive experience through fluid animations and a centralized audio engine.",
     
     p2_title: "OBJ Viewer",
     p2_desc: "An interactive 3D model viewer developed in modern C++. This project allows loading, viewing, and manipulating 3D object files (.obj) using a real-time graphical interface.",
     
     p3_title: "Lottery Management System",
-    p3_desc: "A digital platform developed to modernize and automate the operational processes of the physical agency Lotería Felmar C.A. It manages digital ticket purchases, automatic result synchronization via Web Scraping, and an asynchronous notification system for winners.",
+    p3_desc: "A digital platform developed to modernize and automate the operational processes of the physical agency Lotería Felmar C.A.",
     
     p4_title: "PhotoLab Pro",
     p4_desc: "A desktop application developed in Kotlin and JavaFX focused on Digital Image Processing (DIP). It allows loading, editing, applying mathematical transformations, analyzing pixel properties, and exporting results.",

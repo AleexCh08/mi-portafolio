@@ -111,11 +111,13 @@ export function Projects() {
                 zIndex: offset === 0 ? 10 : 5
               }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className={`absolute w-[90%] sm:w-100 md:w-112.5 bg-slate-900 border border-slate-800 p-6 rounded-xl flex flex-col h-fit transition-all ${
+              className={`absolute w-[90%] sm:w-100 md:w-112.5 rounded-xl flex flex-col h-fit transition-all overflow-hidden ${
                 index !== currentIndex 
-                  ? "pointer-events-none shadow-2xl" 
-                  : "cursor-grab active:cursor-grabbing hover:border-slate-500 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] shadow-2xl"
+                  ? "pointer-events-none shadow-2xl bg-slate-800" 
+                  : "cursor-grab active:cursor-grabbing hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] shadow-2xl bg-slate-800"
               }`}
+              // Este padding de 1px es la clave: expone un pixel de la capa de fondo (donde gira la luz)
+              style={{ padding: "1px" }}
               drag={index === currentIndex ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
@@ -124,56 +126,67 @@ export function Projects() {
                 if (offset.x > 50) prevCard();
               }}
             >
-              <div className="flex justify-between items-start gap-4 mb-2">
-                <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
-                
-                {proyecto.status && (
-                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-md whitespace-nowrap mt-1 border ${
-                        (proyecto.status === 'Listo' || proyecto.status === 'Completed')
-                        ? 'bg-emerald-900/30 text-emerald-400 border-emerald-700/50' 
-                        : 'bg-amber-900/30 text-amber-400 border-amber-700/50'
-                    }`}>
-                        {proyecto.status}
-                    </span>
-                )}
-              </div>
-              <p className="text-slate-400 mb-4 text-justify">{proyecto.descripcion}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-6 self-center-safe">
-                {proyecto.tecnologias.map((tech, i) => (
-                  <span key={i} className="bg-slate-800 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              {/* Efecto de Borde Animado (Solo en la tarjeta central activa) */}
+              {index === currentIndex && (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                  className="absolute top-1/2 left-1/2 w-[200%] h-[200%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_60%,rgba(52,211,153,1)_80%,rgba(59,130,246,1)_100%)] z-0 origin-center"
+                />
+              )}
 
-              <div className="flex gap-4 self-center-safe">
-                <a 
-                  href={proyecto.repo} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg transition-colors"
-                >
-                  {t('projects_btn_code')}
-                </a>
-                {proyecto.demo === "#" ? (
-                  <button 
-                    onClick={() => setActiveDemo(proyecto)}
-                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center cursor-pointer"
-                  >
-                    {t('projects_btn_demo')}
-                  </button>
-                ) : (
-                  <a 
-                    href={proyecto.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center"
-                  >
-                    {t('projects_btn_web')}
-                  </a>
-                )}
-               
+              {/* Contenedor del contenido interno (Fondo oscuro que tapa el centro) */}
+              <div className="relative z-10 bg-slate-900 rounded-[10px] p-6 flex flex-col h-full w-full">
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
+                    
+                    {proyecto.status && (
+                        <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-md whitespace-nowrap mt-1 border ${
+                            (['Listo', 'Completed'].includes(proyecto.status)) 
+                            ? 'bg-emerald-900/30 text-emerald-400 border-emerald-700/50' 
+                            : 'bg-amber-900/30 text-amber-400 border-amber-700/50'
+                        }`}>
+                            {proyecto.status}
+                        </span>
+                    )}
+                  </div>
+                  <p className="text-slate-400 mb-4 text-justify">{proyecto.descripcion}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6 self-center-safe">
+                    {proyecto.tecnologias.map((tech, i) => (
+                      <span key={i} className="bg-slate-800 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-4 self-center-safe">
+                    <a 
+                      href={proyecto.repo} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg transition-colors text-center"
+                    >
+                      {t('projects_btn_code')}
+                    </a>
+                    {proyecto.demo === "#" ? (
+                      <button 
+                        onClick={() => setActiveDemo(proyecto)}
+                        className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center cursor-pointer"
+                      >
+                        {t('projects_btn_demo')}
+                      </button>
+                    ) : (
+                      <a 
+                        href={proyecto.demo} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex-1 text-center"
+                      >
+                        {t('projects_btn_web')}
+                      </a>
+                    )}
+                  </div>
               </div>
             </motion.div>
           );
