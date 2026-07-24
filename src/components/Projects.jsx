@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { DemoModal } from "./DemoModal";
 import { useLanguage } from "../context/LanguageContext";
+import { ShinyText } from "./styles/ShinyText";
+import { AnimatedDivider } from "./styles/AnimatedDivider";
 
 export function Projects() {
   const { t } = useLanguage();
@@ -83,14 +85,17 @@ export function Projects() {
 
   return (
     <section id="proyectos" className="mt-12 scroll-mt-12">
-      <motion.h3 
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="text-3xl font-bold mb-8 border-b border-slate-800 pb-4 text-center"
+        className="text-center"
       >
-        {t('projects_title')}
-      </motion.h3>
+        <h3 className="text-3xl font-bold mb-4">
+          <ShinyText>{t('projects_title')}</ShinyText>
+        </h3>
+        <AnimatedDivider />
+      </motion.div>
 
       <div 
         className="relative w-full max-w-5xl mx-auto h-110 md:h-105 flex justify-center items-center overflow-hidden" 
@@ -116,7 +121,6 @@ export function Projects() {
                   ? "pointer-events-none shadow-2xl bg-slate-800" 
                   : "cursor-grab active:cursor-grabbing hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] shadow-2xl bg-slate-800"
               }`}
-              // Este padding de 1px es la clave: expone un pixel de la capa de fondo (donde gira la luz)
               style={{ padding: "1px" }}
               drag={index === currentIndex ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
@@ -126,7 +130,6 @@ export function Projects() {
                 if (offset.x > 50) prevCard();
               }}
             >
-              {/* Efecto de Borde Animado (Solo en la tarjeta central activa) */}
               {index === currentIndex && (
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -135,7 +138,6 @@ export function Projects() {
                 />
               )}
 
-              {/* Contenedor del contenido interno (Fondo oscuro que tapa el centro) */}
               <div className="relative z-10 bg-slate-900 rounded-[10px] p-6 flex flex-col h-full w-full">
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <h4 className="text-xl font-bold">{proyecto.titulo}</h4>
